@@ -17,7 +17,7 @@ const MainNavigator = ({ parentNavigator }) => {
         <NavigationContainer>
             <>
                 <Stack.Navigator
-                    initialRouteName={'Success'} 
+                    initialRouteName={'Login'} 
                     screenOptions={{ headerShown: false }}
                 >
                     {
@@ -28,7 +28,7 @@ const MainNavigator = ({ parentNavigator }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Stack.Screen name="Success" component={SuccessScreen} />
+                                    {/* <Stack.Screen name="Success" component={SuccessScreen} /> */}
                                     <Stack.Screen name="LogIn" component={LogInScreen} />
                                     <Stack.Screen name="SignUp" component={SignUpScreen} />
                                 </>
