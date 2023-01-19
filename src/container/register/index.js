@@ -11,23 +11,24 @@ import {
 // import Button from 'react-native-button';
 import {AppStyles} from '../../AppStyles';
 
-function LoginScreen({navigation}) {
+function RegisterScreen({navigation}) {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmpassword] = useState('');
 
-  const onPressLogin = () => {
-    console.log('=======Login button press=======');
-    navigation.navigate('Success');
+  const onPressRegister = () => {
+    console.log('=======Register button press=======');
+    navigation.navigate('LogIn');
   };
 
-  const Register = () =>{
-    navigation.navigate('Register')
+  const Login = () =>{
+    navigation.navigate('LogIn')
   }
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, styles.leftTitle]}>Log In</Text>
+      <Text style={[styles.title, styles.leftTitle]}>Register</Text>
       <View style={styles.InputContainer}>
         <TextInput
           style={styles.body}
@@ -49,15 +50,26 @@ function LoginScreen({navigation}) {
           underlineColorAndroid="transparent"
         />
       </View>
+      <View style={styles.InputContainer}>
+        <TextInput
+          style={styles.body}
+          secureTextEntry={true}
+          placeholder="Confirm Password"
+          onChangeText={setConfirmpassword}
+          value={password}
+          placeholderTextColor={AppStyles.color.grey}
+          underlineColorAndroid="transparent"
+        />
+      </View>
       <TouchableOpacity
         style={styles.loginContainer}
-        onPress={() => onPressLogin()}>
-        <Text style={styles.loginText}>Log in</Text>
+        onPress={() => onPressRegister()}>
+        <Text style={styles.loginText}>Register</Text>
       </TouchableOpacity>
       <View style={styles.row}>
-        <Text style={styles.or}>Do not have account?</Text>
-        <TouchableOpacity onPress={()=>Register()}>
-          <Text style={styles.signup}>Register</Text>
+        <Text style={styles.or}>Already have account?</Text>
+        <TouchableOpacity onPress={()=>Login()}>
+          <Text style={styles.signup}>Log In</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -133,4 +145,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

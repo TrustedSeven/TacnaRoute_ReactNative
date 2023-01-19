@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { AuthContext } from '../AuthProvider';
 import LogInScreen from '../container/login';
-import SignUpScreen from '../container/signup';
+import RegisterScreen from '../container/register';
 import SuccessScreen from '../container/success';
 
 const Stack = createNativeStackNavigator();
@@ -28,9 +28,9 @@ const MainNavigator = ({ parentNavigator }) => {
                                 </>
                             ) : (
                                 <>
-                                    {/* <Stack.Screen name="Success" component={SuccessScreen} /> */}
                                     <Stack.Screen name="LogIn" component={LogInScreen} />
-                                    <Stack.Screen name="SignUp" component={SignUpScreen} />
+                                    <Stack.Screen name="Register" component={RegisterScreen} />
+                                    <Stack.Screen name="Success" component={SuccessScreen} />
                                 </>
                             )
                     }
