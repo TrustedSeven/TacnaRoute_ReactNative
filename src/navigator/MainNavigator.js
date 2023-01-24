@@ -28,8 +28,8 @@ const MainNavigator = ({ parentNavigator }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Stack.Screen name="LogIn" component={LogInScreen} />
-                                    <Stack.Screen name="Register" component={RegisterScreen} />
+                                    {/* <Stack.Screen name="LogIn" component={LogInScreen} />
+                                    <Stack.Screen name="Register" component={RegisterScreen} /> */}
                                     <Stack.Screen name="Success" component={SuccessScreen} />
                                 </>
                             )

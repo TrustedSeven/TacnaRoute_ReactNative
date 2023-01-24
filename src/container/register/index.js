@@ -56,7 +56,7 @@ function RegisterScreen({navigation}) {
           secureTextEntry={true}
           placeholder="Confirm Password"
           onChangeText={setConfirmpassword}
-          value={password}
+          value={confirmpassword}
           placeholderTextColor={AppStyles.color.grey}
           underlineColorAndroid="transparent"
         />
