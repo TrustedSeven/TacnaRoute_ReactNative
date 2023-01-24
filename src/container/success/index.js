@@ -7,9 +7,10 @@ import {
   Text,
   Alert,
   Pressable,
-  Image
+  Image,
 } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';
+import GetLocation from 'react-native-get-location';
 import MapView from 'react-native-maps';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
@@ -18,37 +19,64 @@ MapboxGL.setAccessToken(
 );
 
 export default function Success({navigation}) {
-  const [region, setRegion] = useState();
-  const getInitialState = () => {
-    setRegion({
-      latitude: -17.997996,
-      longitude: -70.224809,
-      latitudeDelta: 0.031222,
-      longitudeDelta: 0.0312421,
+  const [currentlocation, setCurrentlocation] = useState([0, 0]);
+  const [targetlocation, setTargetlocation] = useState([0, 0]);
+  const [toggle, setToggle] = useState(false);
+
+  GetLocation.getCurrentPosition({
+    enableHighAccuracy: true,
+    timeout: 15000,
+  })
+    .then(location => {
+      // console.log(location);
+      setCurrentlocation([location.longitude, location.latitude]);
+    })
+    .catch(error => {
+      const {code, message} = error;
+      console.warn(code, message);
     });
-  };
+
+  useEffect(() => {
+    setToggle(true);
+  }, [targetlocation]);
 
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <MapboxGL.MapView style={styles.map}>
+        <MapboxGL.MapView
+          style={styles.map}
+          onPress={feature => {
+            console.log('Target:', feature.geometry.coordinates);
+            setTargetlocation(feature.geometry.coordinates);
+          }}>
           <MapboxGL.Camera
-            zoomLevel={14}
-            maxZoomLevel={15}
-            minZoomLevel={1}
+            // zoomLevel={13}
+            maxZoomLevel={18}
+            minZoomLevel={10}
             animationMode={'flyTo'}
-            centerCoordinate={[-70.224809, -17.997996]}
+            centerCoordinate={currentlocation}
           />
           <View>
             <MapboxGL.MarkerView
-              id={'AAA'}
-              coordinate={[-70.224809, -17.997996]}
+              id={'Current'}
+              coordinate={currentlocation}
               anchor={{x: 0.5, y: 0.5}}>
-                <Image 
-                source={require("../../../assets/icons/star_filled.png")}
-                style={{width:40, height:40}}
-                />
+              <Image
+                source={require('../../../assets/icons/pointer.png')}
+                style={{width: 40, height: 40}}
+              />
             </MapboxGL.MarkerView>
+            {toggle && (
+              <MapboxGL.MarkerView
+                id={'Target'}
+                coordinate={targetlocation}
+                anchor={{x: 0.5, y: 0.5}}>
+                <Image
+                  source={require('../../../assets/icons/tpointer.png')}
+                  style={{width: 40, height: 40}}
+                />
+              </MapboxGL.MarkerView>
+            )}
           </View>
         </MapboxGL.MapView>
       </View>
