@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SuccessScreen from '../container/success';
+import Splash from '../container/splash';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const MainNavigator = ({ parentNavigator }) => {
                     screenOptions={{ headerShown: false }}
                 >
                                 <>
+                                <Stack.Screen name="Splash" component={Splash} />
                                 <Stack.Screen name="Success" component={SuccessScreen} />
                                 </>
                             
