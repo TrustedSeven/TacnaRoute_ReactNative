@@ -8,10 +8,10 @@ import {
   Alert,
   Pressable,
   Image,
+  Button,
 } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
-import MapView from 'react-native-maps';
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(
@@ -80,6 +80,12 @@ export default function Success({navigation}) {
           </View>
         </MapboxGL.MapView>
       </View>
+      <View style={styles.bottom}>
+        <Button
+          title="Press me"
+          onPress={() => Alert.alert('Please Wait')}
+        />
+      </View>
     </View>
   );
 }
@@ -87,14 +93,18 @@ export default function Success({navigation}) {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   container: {
-    height: '100%',
+    height: '90%',
     width: '100%',
   },
   map: {
     flex: 1,
+  },
+  bottom: {
+    backgroundColor: 'green',
+    height: '10%',
   },
 });
