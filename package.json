@@ -22,7 +22,6 @@
     "react-native-modal": "^13.0.1",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",
-    "react-native-splash-screen": "^3.3.0",
     "react-native-toast-message": "^2.1.5",
     "react-query": "^3.39.2"
   },
