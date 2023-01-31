@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
+import {AuthContext} from '../../AuthProvider';
+
+
 
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(
@@ -22,6 +25,7 @@ export default function Success({navigation}) {
   const [currentlocation, setCurrentlocation] = useState([0, 0]);
   const [targetlocation, setTargetlocation] = useState([0, 0]);
   const [toggle, setToggle] = useState(false);
+  const {send} = useContext(AuthContext);
 
   GetLocation.getCurrentPosition({
     enableHighAccuracy: true,
@@ -82,8 +86,17 @@ export default function Success({navigation}) {
       </View>
       <View style={styles.bottom}>
         <Button
-          title="Press me"
-          onPress={() => Alert.alert('Please Wait')}
+          title="PROCESS"
+          onPress={() => {
+            send({currentlocation, targetlocation});
+          }}
+        />
+        <Button
+          title="CLEAR"
+          onPress={() => {
+            setToggle(false);
+            setTargetlocation([0, 0]);
+          }}
         />
       </View>
     </View>
@@ -106,5 +119,5 @@ const styles = StyleSheet.create({
   bottom: {
     backgroundColor: 'green',
     height: '10%',
-  },
+  }
 });

@@ -7,29 +7,11 @@ const apiInstance = axios.create({
 });
 
 class API {
-  login = async (params) => {
+  send = async (params) => {
     console.log(params);
     const response = await apiInstance.post(`/iniciarSession`, params);
     console.log(response.data);
-    return response.data;
-  };
-  loginToken = async (params) => {
-    console.log(params);
-    const response = await apiInstance.post(`/iniciarSessionToken`, params);
-    console.log(response.data);
-    return response.data;
-  };
-  signup = async (params) => {
-    console.log(params);
-    const response = await apiInstance.post(`/registrar`, params);
-    console.log(response.data);
-    return response.data;
+    
   }
-  register = async (params) =>{
-    console.log(params);
-    const response = await apiInstance.post(`/config` , params);
-    console.log(response.data);
-    return response.data;
-  };
 }
 export default new API();
