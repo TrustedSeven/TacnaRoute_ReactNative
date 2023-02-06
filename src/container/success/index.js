@@ -14,8 +14,6 @@ import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
 import {AuthContext} from '../../AuthProvider';
 
-
-
 MapboxGL.setWellKnownTileServer('Mapbox');
 MapboxGL.setAccessToken(
   'pk.eyJ1IjoiaG9lMDA3IiwiYSI6ImNsYjZ0eGUzeDAyajgzd2xra2txcW1kbzkifQ.4d_T2Q8uGzAxGrcFmECnhA',
@@ -37,12 +35,29 @@ export default function Success({navigation}) {
     })
     .catch(error => {
       const {code, message} = error;
-      console.warn(code, message);
+      // console.warn(code, message);
     });
 
   useEffect(() => {
     setToggle(true);
   }, [targetlocation]);
+
+  const [route, setRoute] = useState({
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [-122.083922, 37.4220936],
+            [-122.17815293922924, 37.32748502961873],
+          ],
+        },
+      },
+    ],
+  });
 
   return (
     <View style={styles.page}>
@@ -60,6 +75,9 @@ export default function Success({navigation}) {
             animationMode={'flyTo'}
             centerCoordinate={currentlocation}
           />
+          <MapboxGL.ShapeSource id='line1' shape={route}>
+            <MapboxGL.LineLayer id='linelayer1' style={{lineColor:'red'}} />
+          </MapboxGL.ShapeSource>
           <View>
             <MapboxGL.MarkerView
               id={'Current'}
@@ -119,5 +137,5 @@ const styles = StyleSheet.create({
   bottom: {
     backgroundColor: 'green',
     height: '10%',
-  }
+  },
 });

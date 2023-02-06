@@ -8,11 +8,8 @@ export const AuthProvider = ({children}) => {
 
   const {mutate: send} = useMutation(API.send, {
     onSuccess: data => {
-      if (data.error == false) {
-        setData(data);
-      } else {
-        console.log('error********');
-      }
+      setData(data);
+      console.log("success");
     },
     onError: data => {
       console.log('error==========');
