@@ -52,7 +52,7 @@ export default function Success({navigation}) {
           type: 'LineString',
           coordinates: [
             [-122.083922, 37.4220936],
-            [-122.17815293922924, 37.32748502961873],
+            [-122.08146223937186, 37.42078096253411],
           ],
         },
       },
@@ -71,7 +71,7 @@ export default function Success({navigation}) {
           <MapboxGL.Camera
             // zoomLevel={13}
             maxZoomLevel={18}
-            minZoomLevel={10}
+            minZoomLevel={14}
             animationMode={'flyTo'}
             centerCoordinate={currentlocation}
           />
